@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Brik.Queue.Common
 {
+    public interface ITask
+    {
+        int Delay { get; }
+
+        CancellationToken Cancellation { get; set; }
+
+        Task ExecuteAction();
+
+        Task ExecuteCallback();
+
+        Task ExecuteErrorCallback(Exception e);
+    }
+
     /// <summary>
     /// Task interface
     /// </summary>
-    public interface ITask
+    public interface ITask<out TContext> : ITask
     {
-        Action Action { get; }
-
-        Action Callback { get; }
-
-        Action<Exception> ErrorCallback { get; }
-
-        int Delay { get; }
-        
-        CancellationToken Cancellation { get; set; }
+        TContext Context { get; }
     }
 }

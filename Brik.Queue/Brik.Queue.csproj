@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseTaskHandler.cs" />
     <Compile Include="Common\IQueueDispatcher.cs" />
     <Compile Include="Common\ITask.cs" />
     <Compile Include="Common\ITaskHandler.cs" />

@@ -10,24 +10,26 @@ namespace Brik.Queue.Console
             IQueueDispatcher<ITask> queueDispatcher = new QueueDispatcher(new TaskHandler());
             queueDispatcher.Start();
             //---
-            queueDispatcher.Enqueue(new SimpleTask(
-                () =>
-                {
-                    // Task action
-                    System.Console.WriteLine("Task started");
-                    //---
-                    throw new Exception("Some error");
-                }, () =>
-                {
-                    // Task complete callback
-                    System.Console.WriteLine("Task completed");
-                }, exception =>
-                {
-                    // Exception callback
-                    System.Console.WriteLine("Task faild");
-                }));
+            queueDispatcher.Enqueue(new SimpleTask<int>(1234567890, IntAction));
+            queueDispatcher.Enqueue(new SimpleTask<string>("Some string", StringAction));
+            queueDispatcher.Enqueue(new SimpleTask(VoidAction));
             //---
             System.Console.ReadKey();
+        }
+
+        private static void VoidAction()
+        {
+            System.Console.WriteLine($"VoidAction");
+        }
+
+        private static void StringAction(string str)
+        {
+            System.Console.WriteLine($"StringAction: {str}");
+        }
+
+        private static void IntAction(int i)
+        {
+            System.Console.WriteLine($"IntAction: {i}");
         }
     }
 }

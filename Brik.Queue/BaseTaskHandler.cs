@@ -5,7 +5,7 @@ using Brik.Queue.Common;
 
 namespace Brik.Queue
 {
-    public sealed class TaskHandler : ITaskHandler
+    public abstract class BaseTaskHandler : ITaskHandler
     {
         public Task HandleAsync(ITask task)
         {
@@ -26,17 +26,23 @@ namespace Brik.Queue
                     cancellationToken.ThrowIfCancellationRequested();
                 }
                 //---
-                await task.ExecuteAction();
+                await TaskAction(task);
                 //---
                 cancellationToken.ThrowIfCancellationRequested();
                 //---
-                await task.ExecuteCallback();
+                await TaskCallback(task);
                 //---
             }
             catch (Exception e)
             {
-                await task.ExecuteErrorCallback(e);
+                await TaskError(task, e);
             }
         }
+
+        protected abstract Task TaskAction(ITask task);
+
+        protected abstract Task TaskCallback(ITask task);
+
+        protected abstract Task TaskError(ITask task, Exception e);
     }
 }
