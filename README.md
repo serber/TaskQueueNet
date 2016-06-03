@@ -13,11 +13,13 @@ queueDispatcher.Enqueue(new SimpleTask(
         System.Console.WriteLine("Task started");
         //---
         throw new Exception("Some error");
-    }, () =>
+    },
+    () =>
     {
         // Task complete callback
         System.Console.WriteLine("Task completed");
-    }, exception =>
+    },
+    exception =>
     {
         // Exception callback
         System.Console.WriteLine(exception.Message);
