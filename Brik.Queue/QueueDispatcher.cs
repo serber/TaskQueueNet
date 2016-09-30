@@ -22,6 +22,10 @@ namespace Brik.Queue
 
         #region C-tor
 
+        /// <summary>
+        /// Create <see cref="QueueDispatcher"/> instance with specified <see cref="ITaskHandler"/>
+        /// </summary>
+        /// <param name="taskHandler"><see cref="ITaskHandler"/> instance</param>
         public QueueDispatcher(ITaskHandler taskHandler)
         {
             _tasksQueue = new ConcurrentQueue<ITask>();
@@ -66,6 +70,9 @@ namespace Brik.Queue
 
         #region Private methods
 
+        /// <summary>
+        /// Queue action method
+        /// </summary>
         private async Task QueueAction()
         {
             while (_started)

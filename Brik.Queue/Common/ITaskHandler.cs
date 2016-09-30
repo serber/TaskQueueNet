@@ -10,7 +10,7 @@ namespace Brik.Queue.Common
         /// <summary>
         /// Handle <see cref="ITask"/> async
         /// </summary>
-        /// <param name="task">Task</param>
+        /// <param name="task"><see cref="ITask"/> instance</param>
         Task HandleAsync(ITask task);
     }
 }

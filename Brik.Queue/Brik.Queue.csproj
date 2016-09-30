@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncTask.cs" />
     <Compile Include="BaseTaskHandler.cs" />
     <Compile Include="Common\IQueueDispatcher.cs" />
     <Compile Include="Common\ITask.cs" />
     <Compile Include="Common\ITaskHandler.cs" />
     <Compile Include="QueueDispatcher.cs" />
-    <Compile Include="SimpleTask.cs" />
     <Compile Include="TaskHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

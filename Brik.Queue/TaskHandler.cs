@@ -1,42 +1,27 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Brik.Queue.Common;
 
 namespace Brik.Queue
 {
-    public sealed class TaskHandler : ITaskHandler
+    /// <summary>
+    /// Simple task handler with non parallel task execution
+    /// </summary>
+    public sealed class TaskHandler : BaseTaskHandler
     {
-        public Task HandleAsync(ITask task)
+        public override async Task HandleAsync(ITask task)
         {
-            return Task.Factory.StartNew(() => HandleTask(task));
+            await HandleTaskAsync(task);
         }
+    }
 
-        private async Task HandleTask(ITask task)
+    /// <summary>
+    /// Simple task handler with parallel task execution
+    /// </summary>
+    public sealed class ParallelTaskHandler : BaseTaskHandler
+    {
+        public override Task HandleAsync(ITask task)
         {
-            try
-            {
-                CancellationToken cancellationToken = task.Cancellation;
-                cancellationToken.ThrowIfCancellationRequested();
-                //---
-                if (task.Delay > 0)
-                {
-                    await Task.Delay(task.Delay, task.Cancellation);
-                    //---
-                    cancellationToken.ThrowIfCancellationRequested();
-                }
-                //---
-                await task.ExecuteAction();
-                //---
-                cancellationToken.ThrowIfCancellationRequested();
-                //---
-                await task.ExecuteCallback();
-                //---
-            }
-            catch (Exception e)
-            {
-                await task.ExecuteErrorCallback(e);
-            }
+            return Task.Factory.StartNew(() => HandleTaskAsync(task));
         }
     }
 }

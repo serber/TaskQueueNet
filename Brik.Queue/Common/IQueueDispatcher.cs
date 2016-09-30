@@ -3,7 +3,7 @@
     /// <summary>
     /// Queue dispather
     /// </summary>
-    /// <typeparam name="TTask"></typeparam>
+    /// <typeparam name="TTask">Task implementation type</typeparam>
     public interface IQueueDispatcher<in TTask> where TTask : ITask
     {
         /// <summary>
