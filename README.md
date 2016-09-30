@@ -1,7 +1,7 @@
 # Tasks queue
 Implemets simple tasks queue
 
-## Installation
+# Installation
 ```
 PM> Install-Package TaskQueueNet
 ```
