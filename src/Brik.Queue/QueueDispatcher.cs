@@ -6,7 +6,7 @@ using Brik.Queue.Common;
 
 namespace Brik.Queue
 {
-    public sealed class QueueDispatcher : IQueueDispatcher<ITask>
+    public sealed class QueueDispatcher : IQueueDispatcher
     {
         #region Pricate fields
 
@@ -53,7 +53,7 @@ namespace Brik.Queue
                 _tasksQueue.TryDequeue(out task);
             }
         }
-
+        
         public void Enqueue(ITask task)
         {
             if (!_started)

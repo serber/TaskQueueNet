@@ -3,8 +3,7 @@
     /// <summary>
     /// Queue dispather
     /// </summary>
-    /// <typeparam name="TTask">Task implementation type</typeparam>
-    public interface IQueueDispatcher<in TTask> where TTask : ITask
+    public interface IQueueDispatcher
     {
         /// <summary>
         /// Starts queue dispatcher
@@ -19,7 +18,7 @@
         /// <summary>
         /// Add task to queue
         /// </summary>
-        /// <param name="task">Task</param>
-        void Enqueue(TTask task);
+        /// <param name="task"><see cref="ITask"/> instance</param>
+        void Enqueue(ITask task);
     }
 }
