@@ -1,20 +1,21 @@
 ﻿using Brik.Queue.Common;
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace Brik.Queue.Console
+namespace Brik.Queue.ConsoleApp
 {
-    class Program
+    using System.Net.Http;
+    using System.Threading;
+
+    public class Program
     {
-        static void Main()
+        public static void Main(string[] args)
         {
             IQueueDispatcher<ITask> queueDispatcher = new QueueDispatcher(new ParallelTaskHandler());
             queueDispatcher.Start();
             //---
             queueDispatcher.Enqueue(new AsyncTask<string>("http://ya.ru", DownloadAction, 3000));
-            queueDispatcher.Enqueue(new AsyncTask<string>("http://google.ru", DownloadAction));
             queueDispatcher.Enqueue(new AsyncTask<string>("http://rambler.ru", DownloadAction));
+            queueDispatcher.Enqueue(new AsyncTask<string>("http://mail.ru", DownloadAction));
             //---
             System.Console.ReadKey();
         }

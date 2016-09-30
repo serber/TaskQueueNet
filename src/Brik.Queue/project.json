@@ -1,0 +1,30 @@
+﻿{
+  "version": "1.0.0",
+  "title": "TaskQueue",
+  "description": "Task queue",
+  "authors": [ "Albert Zakiev" ],
+
+  "packOptions": {
+    "tags": [ "tasks", "queue" ],
+    "projectUrl": "https://github.com/serber/TaskQueueNet",
+    "licenseUrl": "https://github.com/serber/TaskQueueNet/blob/master/LICENSE",
+    "owners": [ "Albert Zakiev" ],
+    "iconUrl": "",
+    "requireLicenseAcceptance": false,
+    "summary": "Implemets simple tasks queue"
+  },
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0"
+  },
+
+  "frameworks": {
+    "net45": {
+      "frameworkAssemblies": {
+      }
+    },
+    "netstandard1.3": {
+      "imports": "dnxcore50"
+    }
+  }
+}
