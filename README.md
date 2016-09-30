@@ -1,6 +1,11 @@
 # Tasks queue
 Implemets simple tasks queue
 
+## Installation
+```
+PM> Install-Package TaskQueueNet
+```
+
 # Usage
 ```csharp
 static void Main(string[] args)
