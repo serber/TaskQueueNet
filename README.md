@@ -10,7 +10,7 @@ PM> Install-Package TaskQueueNet
 ```csharp
 static void Main(string[] args)
 {
-    IQueueDispatcher<ITask> queueDispatcher = new QueueDispatcher(new ParallelTaskHandler());
+    IQueueDispatcher queueDispatcher = new QueueDispatcher(new ParallelTaskHandler());
     queueDispatcher.Start();
     //---
     queueDispatcher.Enqueue(new AsyncTask<string>("http://ya.ru", DownloadAction, 3000));
