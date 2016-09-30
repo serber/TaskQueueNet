@@ -10,28 +10,22 @@ PM> Install-Package TaskQueueNet
 ```csharp
 static void Main(string[] args)
 {
-    IQueueDispatcher<ITask> queueDispatcher = new QueueDispatcher(new TaskHandler());
+    IQueueDispatcher<ITask> queueDispatcher = new QueueDispatcher(new ParallelTaskHandler());
     queueDispatcher.Start();
     //---
-    queueDispatcher.Enqueue(new SimpleTask<int>(1234567890, IntAction));
-    queueDispatcher.Enqueue(new SimpleTask<string>("Some string", StringAction));
-    queueDispatcher.Enqueue(new SimpleTask(VoidAction));
+    queueDispatcher.Enqueue(new AsyncTask<string>("http://ya.ru", DownloadAction, 3000));
+    queueDispatcher.Enqueue(new AsyncTask<string>("http://rambler.ru", DownloadAction));
+    queueDispatcher.Enqueue(new AsyncTask<string>("http://mail.ru", DownloadAction));
     //---
     System.Console.ReadKey();
 }
 
-private static void VoidAction()
+private static async Task DownloadAction(string url)
 {
-    System.Console.WriteLine($"VoidAction");
-}
+    System.Console.WriteLine($"Download started: {url}, Thread: {Thread.CurrentThread.ManagedThreadId}");
 
-private static void StringAction(string str)
-{
-    System.Console.WriteLine($"StringAction: {str}");
-}
+    await new HttpClient().GetStringAsync(url);
 
-private static void IntAction(int i)
-{
-    System.Console.WriteLine($"IntAction: {i}");
+    System.Console.WriteLine($"Download complete: {url}, Thread: {Thread.CurrentThread.ManagedThreadId}");
 }
 ```
