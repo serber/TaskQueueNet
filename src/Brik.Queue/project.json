@@ -13,6 +13,12 @@
     "summary": "Implemets simple tasks queue"
   },
 
+  "buildOptions": {
+    "warningsAsErrors": true,
+    "nowarn": [ "CS1591" ],
+    "xmlDoc": true
+  },
+
   "dependencies": {
     "NETStandard.Library": "1.6.0"
   },
