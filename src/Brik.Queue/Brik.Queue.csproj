@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Task queue</Description>
+    <AssemblyTitle>TaskQueue</AssemblyTitle>
+    <Version>1.0</Version>
+    <Authors>Albert Zakiev</Authors>
+    <TargetFrameworks>net451;net461;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AssemblyName>TaskQueueNet</AssemblyName>
+    <PackageId>TaskQueueNet</PackageId>
+    <PackageTags>tasks;queue</PackageTags>
+    <PackageProjectUrl>https://github.com/serber/TaskQueueNet</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/serber/TaskQueueNet/blob/master/LICENSE</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net451' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+</Project>

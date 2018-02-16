@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>Brik.Queue.ConsoleApp</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Brik.Queue.ConsoleApp</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Brik.Queue\Brik.Queue.csproj" />
+  </ItemGroup>
+</Project>
